@@ -44,8 +44,12 @@ def source(name):
 
 
 def run(args, **kwargs):
-    print('+', ' '.join(map(str, args)), flush=True)
-    subprocess.run(list(map(str, args)), check=True, **kwargs)
+    command = list(map(str, args))
+    # Windows CreateProcess searches system directories before PATH. Resolve explicitly
+    # so the MSYS2 bash wins over System32's WSL stub, matching the invoking shell.
+    command[0] = shutil.which(command[0], path=kwargs.get('env', os.environ).get('PATH')) or command[0]
+    print('+', ' '.join(command), flush=True)
+    subprocess.run(command, check=True, **kwargs)
 
 
 def main():
