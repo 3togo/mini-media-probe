@@ -13,6 +13,49 @@ provides a general-purpose interface.
 
 ## Measured result
 
+### Matched ffprobe comparison
+
+Built FFmpeg 9.0.1 with GCC/G++ 15.3, size optimization, no LTO, and no enabled
+decoders, encoders, muxers, filters or networking. Within each profile, ffprobe and
+the helper link **identical static libav archives**. Only `fd:` transport is
+enabled, and both read the same seekable regular file inherited on stdin.
+
+| Linux x86-64 profile | Helper stripped | ffprobe stripped | Helper gzip -9 | ffprobe gzip -9 |
+|---|---:|---:|---:|---:|
+| Broad: 355 demuxers, 67 parsers | 2,548,072 | 2,707,768 | 1,175,286 | 1,243,985 |
+| Common: 24 demuxers, 67 parsers | 1,855,848 | 2,015,544 | 851,618 | 919,174 |
+
+The helper saves 159,696 bytes in either profile: 5.9% of broad ffprobe or 7.9%
+of common ffprobe. Both produce identical normalized results for all six fields
+on all 30 files: 30 correct codecs, 28/29 correct rounded durations, and 64/90
+requested tags recovered. Both estimate the no-Xing MP3 at 60 rather than 62
+seconds. Raw H.264 duration remains unknown and is excluded from that score.
+
+ffprobe JSON is normalized using the helper's documented stream/tag selection
+policy. The raw JSON is retained for inspection. File sizes exclude shared
+runtime dependencies: the helper additionally uses libstdc++ and libgcc_s.
+This is a native Linux comparison, not a matching Windows/macOS benchmark.
+
+- [Broad report](reports/ffprobe-broad.md) and [raw data/build evidence](reports/ffprobe-broad.json)
+- [Common report](reports/ffprobe-common.md) and [raw data/build evidence](reports/ffprobe-common.json)
+
+Reproduce using the existing generated corpus:
+
+```sh
+python3 scripts/build.py --profile broad --with-ffprobe
+python3 scripts/build.py --profile common --with-ffprobe
+python3 benchmarks/compare_ffprobe.py --profile broad
+python3 benchmarks/compare_ffprobe.py --profile common
+```
+
+The matched builds use separate `*-matched` build/prefix directories and preserve
+the original builds. Checksums verify the existing corpus has not changed.
+The comparison tool requires Linux `readelf` and `strip` in addition to the build
+requirements below. This benchmark does not compare malicious-input containment:
+the helper's custom I/O budgets are not replicated by ffprobe.
+
+### MediaInfo comparison
+
 Regenerated the existing 30-file corpus from the [#1904 review](https://github.com/amule-org/amule/pull/1904#issuecomment-6188072318).
 Both dependencies and helpers use size-optimized builds, without LTO or source
 patches. These numbers are **not** measurements of the existing release packages.

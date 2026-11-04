@@ -59,9 +59,13 @@ def main():
     parser.add_argument('--jobs', type=int, default=min(os.cpu_count() or 2, 12))
     parser.add_argument('--cxx', help='Override the helper C++ compiler')
     parser.add_argument('--baseline', action='store_true', help='Also build static MediaInfo reference')
+    parser.add_argument('--with-ffprobe', action='store_true',
+                        help='Build ffprobe and helper against identical fd-enabled static libraries')
     args = parser.parse_args()
     env = direct_environment()
     suffix = args.target + '-' + args.profile
+    if args.with_ffprobe:
+        suffix += '-matched'
     prefix = ROOT / '.cache' / ('prefix-' + suffix)
     ffbuild = ROOT / '.cache' / ('ffmpeg-' + suffix)
     prefix.mkdir(parents=True, exist_ok=True)
@@ -77,6 +81,8 @@ def main():
     else:
         flags += ['--enable-demuxer=aac,ac3,aiff,amr,ape,asf,avi,dts,eac3,flac,flv,gsm,h264,'
                   'hevc,matroska,mov,mp3,mpegps,mpegts,mpegvideo,ogg,wav,wv,tta']
+    if args.with_ffprobe:
+        flags += ['--enable-ffprobe', '--enable-protocol=fd']
     toolchain = []
     if args.target == 'windows':
         flags += ['--enable-cross-compile', '--target-os=mingw32', '--arch=x86_64',
@@ -99,6 +105,9 @@ def main():
     run(['cmake', '-S', ROOT, '-B', build, '-G', 'Ninja', '-DCMAKE_BUILD_TYPE=MinSizeRel',
          '-DPROBE_STATIC_FFMPEG=ON', *toolchain], env=env)
     run(['cmake', '--build', build, '-j', args.jobs], env=env)
+    if args.with_ffprobe:
+        executable_suffix = '.exe' if args.target == 'windows' or os.name == 'nt' else ''
+        shutil.copy2(ffbuild / ('ffprobe' + executable_suffix), build)
     licenses = build / 'licenses/ffmpeg'
     licenses.mkdir(parents=True, exist_ok=True)
     for name in ['COPYING.LGPLv2.1', 'LICENSE.md']:

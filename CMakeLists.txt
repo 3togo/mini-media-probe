@@ -28,5 +28,6 @@ install(DIRECTORY "${CMAKE_BINARY_DIR}/licenses/" DESTINATION ${CMAKE_INSTALL_DA
 if(BUILD_TESTING)
   find_package(Python3 REQUIRED COMPONENTS Interpreter)
   add_test(NAME helper COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_helper.py $<TARGET_FILE:mini-media-probe>)
+  add_test(NAME ffprobe-normalisation COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/test_ffprobe_normalisation.py)
   set_tests_properties(helper PROPERTIES TIMEOUT 120)
 endif()
