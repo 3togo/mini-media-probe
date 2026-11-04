@@ -1,0 +1,17 @@
+{
+  "ffmpeg": {
+    "repo": "FFmpeg/FFmpeg",
+    "ref": "n9.0.1",
+    "sha256": "104674ff13ffd7f9948713952cdbad8c0d2e6e7f5459130c5b6dffa2e12b37c4"
+  },
+  "mediainfo": {
+    "repo": "MediaArea/MediaInfoLib",
+    "ref": "v26.05",
+    "sha256": "1ba187666f0a3307956e9ddf913c822c3f9e9eff12c85e51304ad9a663830e54"
+  },
+  "zenlib": {
+    "repo": "MediaArea/ZenLib",
+    "ref": "v0.4.41",
+    "sha256": "98f58fe2f6ac22424013e72050f0c861279173a846e0ed779a59ee8ec4143a32"
+  }
+}

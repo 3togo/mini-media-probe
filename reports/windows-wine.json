@@ -1,0 +1,2363 @@
+{
+  "platform": "Linux-7.2.6-070206-generic-x86_64-with-glibc2.44",
+  "manifest": {
+    "origin": "https://github.com/amule-org/amule/pull/1904#issuecomment-6188072318",
+    "generator": "ffmpeg version 8.1.2-2ubuntu2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "changes": "Generator thread limits only; regenerated artifacts, not original binaries.",
+    "cases": [
+      {
+        "file": "01-h264-aac.mp4",
+        "bytes": 6615423,
+        "sha256": "da86c25e24d7a1c5d9c9746bbf9a391b030312950edc9310eb481232af0f431d",
+        "expected_codec": "h264",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=61.5",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-c:a",
+          "aac",
+          "-b:a",
+          "128k",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "01-h264-aac.mp4"
+        ]
+      },
+      {
+        "file": "02-hevc-opus.mkv",
+        "bytes": 479450,
+        "sha256": "73d00ec534a3e0c6706b95fa887c27e82fd1c3905cccde7c97cb9914cf476d2f",
+        "expected_codec": "hevc",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "libx265",
+          "-preset",
+          "ultrafast",
+          "-c:a",
+          "libopus",
+          "-b:a",
+          "96k",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "-x265-params",
+          "pools=2:frame-threads=2",
+          "02-hevc-opus.mkv"
+        ]
+      },
+      {
+        "file": "03-vp9-vorbis.webm",
+        "bytes": 382017,
+        "sha256": "f653585484f6589756bed01029308909146fcdac9a626a7c044cff22b945e80a",
+        "expected_codec": "vp9",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "libvpx-vp9",
+          "-deadline",
+          "realtime",
+          "-cpu-used",
+          "8",
+          "-b:v",
+          "300k",
+          "-c:a",
+          "libvorbis",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "03-vp9-vorbis.webm"
+        ]
+      },
+      {
+        "file": "04-av1-flac.mkv",
+        "bytes": 693595,
+        "sha256": "02f6db1aced97df5ffbc45f699232c74fc6a9e6a955ae03a0739daab176dfe03",
+        "expected_codec": "av1",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "libsvtav1",
+          "-preset",
+          "12",
+          "-c:a",
+          "flac",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "-svtav1-params",
+          "lp=2",
+          "04-av1-flac.mkv"
+        ]
+      },
+      {
+        "file": "05-xvid-mp3.avi",
+        "bytes": 3209526,
+        "sha256": "9a1802d0179b0da7f40845ee4807ca4dd518873597cfb7a33dccaa775dd9b383",
+        "expected_codec": "mpeg4",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=61.5",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-c:v",
+          "libxvid",
+          "-c:a",
+          "libmp3lame",
+          "-b:a",
+          "192k",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "05-xvid-mp3.avi"
+        ]
+      },
+      {
+        "file": "06-mpeg4-mp3.avi",
+        "bytes": 552564,
+        "sha256": "b247d381089e8b19e9172ac1eb39788b161306d213b2b7e689229e189c1fd413",
+        "expected_codec": "mpeg4",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "mpeg4",
+          "-c:a",
+          "libmp3lame",
+          "-b:a",
+          "128k",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "06-mpeg4-mp3.avi"
+        ]
+      },
+      {
+        "file": "07-mpeg2-mp2.mpg",
+        "bytes": 856064,
+        "sha256": "02122cc79b9cbf4015c5695906ee731d6989946164a7529e68e707d215eaba6c",
+        "expected_codec": "mpeg2video",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "mpeg2video",
+          "-c:a",
+          "mp2",
+          "-f",
+          "vob",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "07-mpeg2-mp2.mpg"
+        ]
+      },
+      {
+        "file": "08-mpeg1-mp2.mpg",
+        "bytes": 851968,
+        "sha256": "2b366d314cc737114bc1e2ab7b8644ed94a34857e827946d1713ede3dbfa6489",
+        "expected_codec": "mpeg1video",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "mpeg1video",
+          "-c:a",
+          "mp2",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "08-mpeg1-mp2.mpg"
+        ]
+      },
+      {
+        "file": "09-h264-ac3.ts",
+        "bytes": 1120480,
+        "sha256": "e60482134c58652573a1e590c1550cef13a7e8304eed57ff0e19f616b77c4900",
+        "expected_codec": "h264",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-c:a",
+          "ac3",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "09-h264-ac3.ts"
+        ]
+      },
+      {
+        "file": "10-h264-alac.mov",
+        "bytes": 1102533,
+        "sha256": "9e677cd202c556ba936d6a373b32af4a53f43f7107968d7bb17207fb58b56994",
+        "expected_codec": "h264",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-c:a",
+          "alac",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "10-h264-alac.mov"
+        ]
+      },
+      {
+        "file": "11-wmv2-wmav2.wmv",
+        "bytes": 551585,
+        "sha256": "4cb16caa93969a95f62f4fba01aea5ea2beafd28936581288ad825f177f621d6",
+        "expected_codec": "wmv2",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "wmv2",
+          "-c:a",
+          "wmav2",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "11-wmv2-wmav2.wmv"
+        ]
+      },
+      {
+        "file": "12-theora-vorbis.ogv",
+        "bytes": 279972,
+        "sha256": "3c832a10cec6d0ff5d791c7c5fd412f8ef67e8ba47dc45a228434b45689e06b6",
+        "expected_codec": "theora",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "libtheora",
+          "-c:a",
+          "libvorbis",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "12-theora-vorbis.ogv"
+        ]
+      },
+      {
+        "file": "13-h264-aac.flv",
+        "bytes": 1008483,
+        "sha256": "07a56ea0df49604ac22153ff0c47b87d9afe7d08b5245d44ce9f8ea5a00502f4",
+        "expected_codec": "h264",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-c:a",
+          "aac",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "13-h264-aac.flv"
+        ]
+      },
+      {
+        "file": "14-multi-audio-sub.mkv",
+        "bytes": 1123502,
+        "sha256": "c61383b8b4c7724a8f137d9071338f9b55a6e4b346c4431f2c5861f1866d7752",
+        "expected_codec": "h264",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=880:duration=10",
+          "-map",
+          "0:v",
+          "-map",
+          "1:a",
+          "-map",
+          "2:a",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-c:a:0",
+          "aac",
+          "-c:a:1",
+          "ac3",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "14-multi-audio-sub.mkv"
+        ]
+      },
+      {
+        "file": "15-prores-pcm.mov",
+        "bytes": 1026773,
+        "sha256": "075079d2d23b72e0b6e19d81888e4ef9a915fa695b122f55887ad2df8c5fa166",
+        "expected_codec": "prores",
+        "expected_seconds": 3,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=3",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=duration=3",
+          "-c:v",
+          "prores_ks",
+          "-profile:v",
+          "0",
+          "-c:a",
+          "pcm_s16le",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "15-prores-pcm.mov"
+        ]
+      },
+      {
+        "file": "16-mjpeg-pcm.avi",
+        "bytes": 2118756,
+        "sha256": "6482ee8f0b0a48e6a8d4249832831ac2bcaa8a5ddba6ebed7d262491a3ef090c",
+        "expected_codec": "mjpeg",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "mjpeg",
+          "-c:a",
+          "pcm_s16le",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "16-mjpeg-pcm.avi"
+        ]
+      },
+      {
+        "file": "17-h263-aac.3gp",
+        "bytes": 420493,
+        "sha256": "e9aa09575b67ce41ba6ae71f61168b426f6cb2a5c29e76db89fb89fca1b727dd",
+        "expected_codec": "h263",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=176x144:rate=15:duration=10",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:v",
+          "h263",
+          "-c:a",
+          "aac",
+          "-ar",
+          "16000",
+          "-ac",
+          "1",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-shortest",
+          "-threads",
+          "2",
+          "17-h263-aac.3gp"
+        ]
+      },
+      {
+        "file": "18-cbr-cover.mp3",
+        "bytes": 1488141,
+        "sha256": "43cb4fa6f61c1d543776bfe3618d3a50e553ffe44d66615a18d40e3769b13de5",
+        "expected_codec": "mp3",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-i",
+          "cover.jpg",
+          "-map",
+          "0:a",
+          "-map",
+          "1:v",
+          "-c:a",
+          "libmp3lame",
+          "-b:a",
+          "192k",
+          "-c:v",
+          "copy",
+          "-id3v2_version",
+          "3",
+          "-disposition:v",
+          "attached_pic",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "18-cbr-cover.mp3"
+        ]
+      },
+      {
+        "file": "19-vbr-xing.mp3",
+        "bytes": 284273,
+        "sha256": "28a26a4df2005bd3a8edc00f96129e6d89986307263278ac77e9fb62b5c24255",
+        "expected_codec": "mp3",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-c:a",
+          "libmp3lame",
+          "-q:a",
+          "2",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "19-vbr-xing.mp3"
+        ]
+      },
+      {
+        "file": "20-vbr-noxing.mp3",
+        "bytes": 284091,
+        "sha256": "f0261a0b8246bf50ded454c15478a2b522ab16f351bdd13d0ae7f10ce3cd1d55",
+        "expected_codec": "mp3",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-c:a",
+          "libmp3lame",
+          "-q:a",
+          "2",
+          "-write_xing",
+          "0",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "20-vbr-noxing.mp3"
+        ]
+      },
+      {
+        "file": "21-flac-cover.flac",
+        "bytes": 757031,
+        "sha256": "ea71a42b9a25ccaa9f8d607ebb050cf2ca5040b1107625cc3b5d1a94446b8395",
+        "expected_codec": "flac",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-i",
+          "cover.jpg",
+          "-map",
+          "0:a",
+          "-map",
+          "1:v",
+          "-c:a",
+          "flac",
+          "-c:v",
+          "copy",
+          "-disposition:v",
+          "attached_pic",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "21-flac-cover.flac"
+        ]
+      },
+      {
+        "file": "22-vorbis.ogg",
+        "bytes": 107318,
+        "sha256": "9918c5303a9734ba598d2e65c6fdd376f2618605cef03784ba0c89f2d757de97",
+        "expected_codec": "vorbis",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-c:a",
+          "libvorbis",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "22-vorbis.ogg"
+        ]
+      },
+      {
+        "file": "23-opus.opus",
+        "bytes": 630813,
+        "sha256": "f7c6da9e634be64614da6ea33c56d2a88515c767459900ba909d74dd5cc36e7e",
+        "expected_codec": "opus",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-c:a",
+          "libopus",
+          "-b:a",
+          "64k",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "23-opus.opus"
+        ]
+      },
+      {
+        "file": "24-aac-cover.m4a",
+        "bytes": 1040166,
+        "sha256": "8a8cc28ef1c5cca9c63860945906f519cfc97b04f76283fc43a5f2cfdcaf9112",
+        "expected_codec": "aac",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-i",
+          "cover.jpg",
+          "-map",
+          "0:a",
+          "-map",
+          "1:v",
+          "-c:a",
+          "aac",
+          "-b:a",
+          "160k",
+          "-c:v",
+          "copy",
+          "-disposition:v",
+          "attached_pic",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "24-aac-cover.m4a"
+        ]
+      },
+      {
+        "file": "25-pcm16.wav",
+        "bytes": 960140,
+        "sha256": "60cd7ec14503d240de68ce6693d570ba7c50e49dbac64349f0b68156eeb3ad8a",
+        "expected_codec": "pcm_s16le",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:a",
+          "pcm_s16le",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "25-pcm16.wav"
+        ]
+      },
+      {
+        "file": "26-pcm16be.aiff",
+        "bytes": 960074,
+        "sha256": "feccfe7607e029a84b4a1251d011d471eb971f97d18474aa3cdd5b6baebc74a7",
+        "expected_codec": "pcm_s16be",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:a",
+          "pcm_s16be",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "26-pcm16be.aiff"
+        ]
+      },
+      {
+        "file": "27-eac3.mka",
+        "bytes": 123042,
+        "sha256": "f5d7d43f4865a640be64f31c7d4a7b6d31b001493223a04ead297546dbcd4f9f",
+        "expected_codec": "eac3",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:a",
+          "eac3",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "27-eac3.mka"
+        ]
+      },
+      {
+        "file": "28-dts.mka",
+        "bytes": 1774445,
+        "sha256": "e73828d8797f3bc873425249c63f987d2888495271149c54e5beb4aaf86baacc",
+        "expected_codec": "dts",
+        "expected_seconds": 10,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=10",
+          "-c:a",
+          "dca",
+          "-strict",
+          "-2",
+          "-metadata",
+          "artist=Spike Artist",
+          "-metadata",
+          "title=Spike Title",
+          "-metadata",
+          "album=Spike Album",
+          "-threads",
+          "2",
+          "28-dts.mka"
+        ]
+      },
+      {
+        "file": "29-raw.h264",
+        "bytes": 908238,
+        "sha256": "55430ae8d4e095858d6bda4b672124d0a21901dd260fd1f30afbc2e64d3d34b2",
+        "expected_codec": "h264",
+        "expected_seconds": null,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "testsrc2=size=320x240:rate=25:duration=10",
+          "-c:v",
+          "libx264",
+          "-preset",
+          "ultrafast",
+          "-f",
+          "h264",
+          "-threads",
+          "2",
+          "29-raw.h264"
+        ]
+      },
+      {
+        "file": "30-raw-adts.aac",
+        "bytes": 1003459,
+        "sha256": "532985b1963560f53d1b9075a6aab69fc2f56794393d0a7cc3037259725cde9b",
+        "expected_codec": "aac",
+        "expected_seconds": 62,
+        "command": [
+          "ffmpeg",
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-nostdin",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=61.5",
+          "-c:a",
+          "aac",
+          "-b:a",
+          "128k",
+          "-f",
+          "adts",
+          "-threads",
+          "2",
+          "30-raw-adts.aac"
+        ]
+      }
+    ]
+  },
+  "libav_runner": "/opt/wine/bin/wine",
+  "binaries": {
+    "libav": {
+      "bytes": 3339776,
+      "gzip9_bytes": 1464795,
+      "sha256": "735e64b19391594a5d3405dbbea17a1e7fd29161dcf568dcc9d005e2d33b0b99"
+    },
+    "mediainfo": {
+      "bytes": 7059760,
+      "gzip9_bytes": 2858446,
+      "sha256": "416c10e094c793728f68df19db044d70dcca12d82e1631ebe9ed94ffc295003e"
+    }
+  },
+  "cases": [
+    {
+      "file": "01-h264-aac.mp4",
+      "expected_codec": "h264",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 860,
+          "codec": "h264",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6002.564043999882,
+        "median_ms": 6002.564043999882,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 860,
+          "codec": "h264",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 32.75732399924891,
+        "median_ms": 32.75732399924891,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "02-hevc-opus.mkv",
+      "expected_codec": "hevc",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 383,
+          "codec": "hevc",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6005.267473999993,
+        "median_ms": 6005.267473999993,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 383,
+          "codec": "hevc",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 26.23756799584953,
+        "median_ms": 26.23756799584953,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "03-vp9-vorbis.webm",
+      "expected_codec": "vp9",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 305,
+          "codec": "vp9",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6018.3578619980835,
+        "median_ms": 6018.3578619980835,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 305,
+          "codec": "vp9",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 24.128247001499403,
+        "median_ms": 24.128247001499403,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "04-av1-flac.mkv",
+      "expected_codec": "av1",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 554,
+          "codec": "av1",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6035.064616000454,
+        "median_ms": 6035.064616000454,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 554,
+          "codec": "av1",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 25.176044000545517,
+        "median_ms": 25.176044000545517,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "05-xvid-mp3.avi",
+      "expected_codec": "mpeg4",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 417,
+          "codec": "mpeg4",
+          "artist": "Spike Artist",
+          "album": "",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6024.535410993849,
+        "median_ms": 6024.535410993849,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 417,
+          "codec": "mpeg4",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 27.83504899707623,
+        "median_ms": 27.83504899707623,
+        "stable": true
+      },
+      "differences": {
+        "album": {
+          "libav": "",
+          "mediainfo": "Spike Album"
+        }
+      }
+    },
+    {
+      "file": "06-mpeg4-mp3.avi",
+      "expected_codec": "mpeg4",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 440,
+          "codec": "mpeg4",
+          "artist": "Spike Artist",
+          "album": "",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6022.861268997076,
+        "median_ms": 6022.861268997076,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 440,
+          "codec": "mpeg4",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 34.94585899898084,
+        "median_ms": 34.94585899898084,
+        "stable": true
+      },
+      "differences": {
+        "album": {
+          "libav": "",
+          "mediainfo": "Spike Album"
+        }
+      }
+    },
+    {
+      "file": "07-mpeg2-mp2.mpg",
+      "expected_codec": "mpeg2video",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 684,
+          "codec": "mpeg2video",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 6010.451725000166,
+        "median_ms": 6010.451725000166,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 684,
+          "codec": "mpeg2video",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 27.19858799537178,
+        "median_ms": 27.19858799537178,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "08-mpeg1-mp2.mpg",
+      "expected_codec": "mpeg1video",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 681,
+          "codec": "mpeg1video",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 6023.955422992003,
+        "median_ms": 6023.955422992003,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 681,
+          "codec": "mpeg1video",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 27.155454008607194,
+        "median_ms": 27.155454008607194,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "09-h264-ac3.ts",
+      "expected_codec": "h264",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 895,
+          "codec": "h264",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 6019.569243988371,
+        "median_ms": 6019.569243988371,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 895,
+          "codec": "h264",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 48.601482005324215,
+        "median_ms": 48.601482005324215,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "10-h264-alac.mov",
+      "expected_codec": "h264",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 882,
+          "codec": "h264",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6031.567108002491,
+        "median_ms": 6031.567108002491,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 882,
+          "codec": "h264",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 23.860117988078855,
+        "median_ms": 23.860117988078855,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "11-wmv2-wmav2.wmv",
+      "expected_codec": "wmv2",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 437,
+          "codec": "wmv2",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6026.751527999295,
+        "median_ms": 6026.751527999295,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 439,
+          "codec": "wmv2",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 32.56023301219102,
+        "median_ms": 32.56023301219102,
+        "stable": true
+      },
+      "differences": {
+        "bitrate_kbps": {
+          "libav": 437,
+          "mediainfo": 439
+        }
+      }
+    },
+    {
+      "file": "12-theora-vorbis.ogv",
+      "expected_codec": "theora",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 223,
+          "codec": "theora",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 6007.148476011935,
+        "median_ms": 6007.148476011935,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 223,
+          "codec": "theora",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 22.987069009104744,
+        "median_ms": 22.987069009104744,
+        "stable": true
+      },
+      "differences": {
+        "artist": {
+          "libav": "",
+          "mediainfo": "Spike Artist"
+        },
+        "album": {
+          "libav": "",
+          "mediainfo": "Spike Album"
+        },
+        "title": {
+          "libav": "",
+          "mediainfo": "Spike Title"
+        }
+      }
+    },
+    {
+      "file": "13-h264-aac.flv",
+      "expected_codec": "h264",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 805,
+          "codec": "h264",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6037.660393005353,
+        "median_ms": 6037.660393005353,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 804,
+          "codec": "h264",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 24.495056990417652,
+        "median_ms": 24.495056990417652,
+        "stable": true
+      },
+      "differences": {
+        "bitrate_kbps": {
+          "libav": 805,
+          "mediainfo": 804
+        }
+      }
+    },
+    {
+      "file": "14-multi-audio-sub.mkv",
+      "expected_codec": "h264",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 896,
+          "codec": "h264",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6029.166866996093,
+        "median_ms": 6029.166866996093,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 896,
+          "codec": "h264",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 40.660365993971936,
+        "median_ms": 40.660365993971936,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "15-prores-pcm.mov",
+      "expected_codec": "prores",
+      "expected_seconds": 3,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 3,
+          "bitrate_kbps": 2738,
+          "codec": "prores",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6025.735215007444,
+        "median_ms": 6025.735215007444,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 3,
+          "bitrate_kbps": 2738,
+          "codec": "prores",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 22.203853994142264,
+        "median_ms": 22.203853994142264,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "16-mjpeg-pcm.avi",
+      "expected_codec": "mjpeg",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 1695,
+          "codec": "mjpeg",
+          "artist": "Spike Artist",
+          "album": "",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6026.413205996505,
+        "median_ms": 6026.413205996505,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 1695,
+          "codec": "mjpeg",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 31.489079003222287,
+        "median_ms": 31.489079003222287,
+        "stable": true
+      },
+      "differences": {
+        "album": {
+          "libav": "",
+          "mediainfo": "Spike Album"
+        }
+      }
+    },
+    {
+      "file": "17-h263-aac.3gp",
+      "expected_codec": "h263",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 336,
+          "codec": "h263",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 6020.936095999787,
+        "median_ms": 6020.936095999787,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 336,
+          "codec": "h263",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 30.64885399362538,
+        "median_ms": 30.64885399362538,
+        "stable": true
+      },
+      "differences": {
+        "artist": {
+          "libav": "",
+          "mediainfo": "Spike Artist"
+        },
+        "album": {
+          "libav": "",
+          "mediainfo": "Spike Album"
+        },
+        "title": {
+          "libav": "",
+          "mediainfo": "Spike Title"
+        }
+      }
+    },
+    {
+      "file": "18-cbr-cover.mp3",
+      "expected_codec": "mp3",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 193,
+          "codec": "mp3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6023.939655991853,
+        "median_ms": 6023.939655991853,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 192,
+          "codec": "mp3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 63.489257998298854,
+        "median_ms": 63.489257998298854,
+        "stable": true
+      },
+      "differences": {
+        "bitrate_kbps": {
+          "libav": 193,
+          "mediainfo": 192
+        }
+      }
+    },
+    {
+      "file": "19-vbr-xing.mp3",
+      "expected_codec": "mp3",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 36,
+          "codec": "mp3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6040.761773998383,
+        "median_ms": 6040.761773998383,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 36,
+          "codec": "mp3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 24.675284992554225,
+        "median_ms": 24.675284992554225,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "20-vbr-noxing.mp3",
+      "expected_codec": "mp3",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 60,
+          "bitrate_kbps": 37,
+          "codec": "mp3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6012.04423600575,
+        "median_ms": 6012.04423600575,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 36,
+          "codec": "mp3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 40.657681005541235,
+        "median_ms": 40.657681005541235,
+        "stable": true
+      },
+      "differences": {
+        "length_seconds": {
+          "libav": 60,
+          "mediainfo": 62
+        },
+        "bitrate_kbps": {
+          "libav": 37,
+          "mediainfo": 36
+        }
+      }
+    },
+    {
+      "file": "21-flac-cover.flac",
+      "expected_codec": "flac",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 98,
+          "codec": "flac",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6015.919813988148,
+        "median_ms": 6015.919813988148,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 98,
+          "codec": "flac",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 26.644455996574834,
+        "median_ms": 26.644455996574834,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "22-vorbis.ogg",
+      "expected_codec": "vorbis",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 13,
+          "codec": "vorbis",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6022.884848993272,
+        "median_ms": 6022.884848993272,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 13,
+          "codec": "vorbis",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 19.03106398822274,
+        "median_ms": 19.03106398822274,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "23-opus.opus",
+      "expected_codec": "opus",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 82,
+          "codec": "opus",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6027.346460003173,
+        "median_ms": 6027.346460003173,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 82,
+          "codec": "opus",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 18.508874010876752,
+        "median_ms": 18.508874010876752,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "24-aac-cover.m4a",
+      "expected_codec": "aac",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 135,
+          "codec": "aac",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6022.563885999261,
+        "median_ms": 6022.563885999261,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 135,
+          "codec": "aac",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 27.616586987278424,
+        "median_ms": 27.616586987278424,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "25-pcm16.wav",
+      "expected_codec": "pcm_s16le",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 768,
+          "codec": "pcm_s16le",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6022.472024997114,
+        "median_ms": 6022.472024997114,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 768,
+          "codec": "pcm_s16le",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 26.34758100612089,
+        "median_ms": 26.34758100612089,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "26-pcm16be.aiff",
+      "expected_codec": "pcm_s16be",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 768,
+          "codec": "pcm_s16be",
+          "artist": "",
+          "album": "",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6063.478911004495,
+        "median_ms": 6063.478911004495,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 768,
+          "codec": "pcm_s16be",
+          "artist": "",
+          "album": "",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 26.846316002774984,
+        "median_ms": 26.846316002774984,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "27-eac3.mka",
+      "expected_codec": "eac3",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 98,
+          "codec": "eac3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6030.215206003049,
+        "median_ms": 6030.215206003049,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 98,
+          "codec": "eac3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 25.581619003787637,
+        "median_ms": 25.581619003787637,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "28-dts.mka",
+      "expected_codec": "dts",
+      "expected_seconds": 10,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 10,
+          "bitrate_kbps": 1419,
+          "codec": "dts",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 6034.484874995542,
+        "median_ms": 6034.484874995542,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 10,
+          "bitrate_kbps": 1419,
+          "codec": "dts",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        },
+        "stderr": "",
+        "elapsed_ms": 24.324457001057453,
+        "median_ms": 24.324457001057453,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "29-raw.h264",
+      "expected_codec": "h264",
+      "expected_seconds": null,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 0,
+          "bitrate_kbps": 0,
+          "codec": "h264",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 7254.7430859995075,
+        "median_ms": 7254.7430859995075,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 0,
+          "bitrate_kbps": 0,
+          "codec": "h264",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 21.49617399845738,
+        "median_ms": 21.49617399845738,
+        "stable": true
+      },
+      "differences": {}
+    },
+    {
+      "file": "30-raw-adts.aac",
+      "expected_codec": "aac",
+      "expected_seconds": 62,
+      "libav": {
+        "exit": 0,
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 130,
+          "codec": "aac",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 6027.875403990038,
+        "median_ms": 6027.875403990038,
+        "stable": true
+      },
+      "mediainfo": {
+        "exit": 0,
+        "metadata": {
+          "backend": "mediainfo",
+          "length_seconds": 62,
+          "bitrate_kbps": 130,
+          "codec": "aac",
+          "artist": "",
+          "album": "",
+          "title": ""
+        },
+        "stderr": "",
+        "elapsed_ms": 146.0465429991018,
+        "median_ms": 146.0465429991018,
+        "stable": true
+      },
+      "differences": {}
+    }
+  ],
+  "summary": {
+    "libav": {
+      "extracted": 30,
+      "codec_correct": 30,
+      "duration_correct": 28,
+      "duration_cases": 29,
+      "requested_tags_recovered": 64,
+      "stable": true,
+      "corpus_median_ms_total": 181966.73613895837
+    },
+    "mediainfo": {
+      "extracted": 30,
+      "codec_correct": 30,
+      "duration_correct": 29,
+      "duration_cases": 29,
+      "requested_tags_recovered": 73,
+      "stable": true,
+      "corpus_median_ms_total": 994.206139977905
+    }
+  }
+}
