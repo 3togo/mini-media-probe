@@ -13,11 +13,12 @@ REQUIRE_FIXTURES = '--require-fixtures' in sys.argv
 if REQUIRE_FIXTURES:
     sys.argv.remove('--require-fixtures')
 FFMPEG = shutil.which('ffmpeg')
-if REQUIRE_FIXTURES and not FFMPEG:
-    raise RuntimeError('Required duration fixture generator ffmpeg was not found')
+FFPROBE = shutil.which('ffprobe')
+if REQUIRE_FIXTURES and not (FFMPEG and FFPROBE):
+    raise RuntimeError('Required duration fixture tools ffmpeg and ffprobe were not found')
 
 
-@unittest.skipUnless(FFMPEG, 'optional duration fixture generator requires ffmpeg')
+@unittest.skipUnless(FFMPEG and FFPROBE, 'optional duration fixtures require ffmpeg and ffprobe')
 class DurationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -58,7 +59,14 @@ class DurationTests(unittest.TestCase):
     def test_noxing_vbr_full_scan_rounds_to_62(self):
         result = self.probe(self.noxing)
         self.assertEqual(result['length_seconds'], 62)
-        self.assertEqual(result['bitrate_kbps'], 36)
+        # Encoder versions can produce different VBR byte counts. Independently
+        # count MPEG-1 audio packets, then use their fixed 1152 samples at 44.1 kHz.
+        packets = int(subprocess.check_output([
+            FFPROBE, '-v', 'error', '-select_streams', 'a:0', '-count_packets',
+            '-show_entries', 'stream=nb_read_packets', '-of', 'csv=p=0', str(self.noxing)],
+            text=True, timeout=30))
+        expected_bitrate = self.noxing.stat().st_size * 8 * 44100 // (packets * 1152 * 1000)
+        self.assertEqual(result['bitrate_kbps'], expected_bitrate)
         self.assertEqual(result['codec'], 'mp3')
         self.assertEqual(result['artist'], 'Duration Artist')
         self.assertEqual(result['title'], 'Duration Title')

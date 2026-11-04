@@ -76,6 +76,6 @@ previous executable. Both profiles pass the helper, normalization and duration
 CTest groups. AddressSanitizer/UndefinedBehaviorSanitizer checks of the helper
 also pass; the prebuilt FFmpeg archives themselves were not sanitizer-instrumented.
 The MinGW Windows cross-build succeeds. The [native CI workflow](https://github.com/3togo/mini-media-probe/actions/workflows/build.yml)
-installs the fixture generator and requires the duration tests on Linux, Windows
+installs the ffmpeg/ffprobe fixture tools and requires the duration tests on Linux, Windows
 and macOS; missing LAME/x264 encoders fail that run instead of silently skipping
 the regressions. The linked run history records validation of each published head.

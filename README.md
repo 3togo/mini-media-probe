@@ -164,7 +164,7 @@ The workflow uploads each platform's executable, build configuration and license
 notices. Linux-to-Windows cross-compilation has also been exercised locally.
 GitHub artifact downloads do not preserve executable permissions; restore them
 with `chmod +x` on Linux/macOS. Native CI requires the generated-media MP3 duration
-regressions, in addition to the helper and normalization tests; fixture generators
+regressions, in addition to the helper and normalization tests; ffmpeg/ffprobe fixture tools
 are test-only dependencies. The 30-file metadata comparison above was run locally
 on Linux and under Wine.
 
