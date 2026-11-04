@@ -1,0 +1,97 @@
+{
+  "description": "Warm-cache synthetic MP3; startup and file scan included; not a network-share benchmark.",
+  "files": {
+    "61.5s": {
+      "bytes": 284091,
+      "sha256": "f0261a0b8246bf50ded454c15478a2b522ab16f351bdd13d0ae7f10ce3cd1d55",
+      "before": {
+        "median_ms": 3.6348629946587607,
+        "samples_ms": [
+          4.322644992498681,
+          4.365557004348375,
+          3.6036829988006502,
+          4.2888499883702025,
+          3.4285160072613508,
+          3.6348629946587607,
+          3.6096639960305765
+        ],
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 60,
+          "bitrate_kbps": 37,
+          "codec": "mp3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        }
+      },
+      "after": {
+        "median_ms": 6.488225000794046,
+        "samples_ms": [
+          6.464548991061747,
+          6.658212005277164,
+          6.334749006782658,
+          6.488225000794046,
+          6.528582001919858,
+          6.505598008516245,
+          6.36392600426916
+        ],
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 62,
+          "bitrate_kbps": 36,
+          "codec": "mp3",
+          "artist": "Spike Artist",
+          "album": "Spike Album",
+          "title": "Spike Title"
+        }
+      }
+    },
+    "1800s": {
+      "bytes": 8281673,
+      "sha256": "a853c33b1ed9540bf3907d10d087c1acc4cc0caa618d4cf31f12a8ae21d0cbf8",
+      "before": {
+        "median_ms": 3.6204350035404786,
+        "samples_ms": [
+          3.6394120106706396,
+          3.6377790092956275,
+          4.177174996584654,
+          3.6139620060566813,
+          3.6204350035404786,
+          3.519792007864453,
+          3.521834994899109
+        ],
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 1748,
+          "bitrate_kbps": 37,
+          "codec": "mp3",
+          "artist": "",
+          "album": "",
+          "title": ""
+        }
+      },
+      "after": {
+        "median_ms": 89.98894899559673,
+        "samples_ms": [
+          89.56014599243645,
+          88.14127900404856,
+          91.61510299600195,
+          89.98894899559673,
+          90.31256099115126,
+          89.25977899343707,
+          90.88222599530127
+        ],
+        "metadata": {
+          "backend": "libav",
+          "length_seconds": 1800,
+          "bitrate_kbps": 36,
+          "codec": "mp3",
+          "artist": "",
+          "album": "",
+          "title": ""
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,30 @@ provides a general-purpose interface.
 
 ## Measured result
 
-### Matched ffprobe comparison
+### Duration correction
+
+The helper now replaces bitrate-estimated MP3 duration with a bounded full frame
+scan. In the existing no-Xing fixture this changes 60 seconds to **62 seconds**,
+and overall bitrate from 37 to 36 kbps. The known-duration corpus score becomes
+**29/29**, compared with unchanged minimal ffprobe's 28/29. All other corpus
+results remain unchanged. [Broad results](reports/duration-fix-broad.md),
+[common results](reports/duration-fix-common.md), [method and limitations](reports/DURATION.md).
+
+The scan applies only to raw MP3 whose duration libav estimated from bitrate.
+Reliable Xing/VBRI duration remains on the fast path. It requires contiguous,
+complete Layer III frames through EOF; an ID3v1 footer is allowed. Files over
+512 MiB, truncation, resynchronisation gaps, unsupported/free-format frames or
+unknown trailing data leave duration and derived bitrate unknown while keeping
+usable codec/tags. Existing time, memory, read and seek bounds remain in force.
+This measures encoded frame duration; missing encoder-delay/padding information
+still prevents a guarantee of sample-accurate gapless programme duration.
+
+Raw H.264 remains unknown. A checked VFR example retains a 9.833-second timeline
+in Matroska, but the same pictures in raw Annex B yield only 1.433 seconds when
+nominal packet durations are summed. A full picture count is insufficient when
+the original presentation timestamps have been lost.
+
+### Matched ffprobe comparison before the duration correction
 
 Built FFmpeg 9.0.1 with GCC/G++ 15.3, size optimization, no LTO, and no enabled
 decoders, encoders, muxers, filters or networking. Within each profile, ffprobe and
@@ -54,7 +77,7 @@ The comparison tool requires Linux `readelf` and `strip` in addition to the buil
 requirements below. This benchmark does not compare malicious-input containment:
 the helper's custom I/O budgets are not replicated by ffprobe.
 
-### MediaInfo comparison
+### Original MediaInfo comparison
 
 Regenerated the existing 30-file corpus from the [#1904 review](https://github.com/amule-org/amule/pull/1904#issuecomment-6188072318).
 Both dependencies and helpers use size-optimized builds, without LTO or source

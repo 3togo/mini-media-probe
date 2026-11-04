@@ -42,6 +42,77 @@ struct Result {
     uint32_t length = 0, bitrate = 0;
     std::string codec, artist, album, title;
 };
+// Layer III frame duration is fixed by its MPEG version/sample rate, not bitrate.
+// Validate complete packets before counting: a parser flush can expose a truncated
+// last frame, and resynchronisation can otherwise hide damaged bytes in the middle.
+// These header-size rules follow libavcodec/mpegaudiodecheader.c; its full
+// validator is private API. Free-format frames are deliberately left unknown.
+bool mp3FrameTicks(const AVPacket &packet, int64_t &ticks) {
+    if (packet.size < 4 || (packet.flags & AV_PKT_FLAG_CORRUPT))
+        return false;
+    const uint32_t header = uint32_t(packet.data[0]) << 24 | uint32_t(packet.data[1]) << 16 |
+                            uint32_t(packet.data[2]) << 8 | packet.data[3];
+    const unsigned version = (header >> 19) & 3;
+    const unsigned bitrateIndex = (header >> 12) & 15;
+    const unsigned rateIndex = (header >> 10) & 3;
+    if ((header & 0xffe00000U) != 0xffe00000U || version == 1 || ((header >> 17) & 3) != 1 ||
+        !bitrateIndex || bitrateIndex == 15 || rateIndex == 3 || (header & 3) == 2)
+        return false;
+    constexpr unsigned rates[] = {44100, 48000, 32000};
+    constexpr unsigned mpeg1[] = {0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320};
+    constexpr unsigned mpeg2[] = {0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160};
+    const unsigned rate = rates[rateIndex] / (version == 3 ? 1 : version == 2 ? 2 : 4);
+    const unsigned bitrate = version == 3 ? mpeg1[bitrateIndex] : mpeg2[bitrateIndex];
+    const unsigned bytes = (version == 3 ? 144000 : 72000) * bitrate / rate + ((header >> 9) & 1);
+    if (static_cast<unsigned>(packet.size) != bytes)
+        return false;
+    // 14,112,000 is divisible by every Layer III sample rate; integer sums avoid drift.
+    ticks = (version == 3 ? 1152LL : 576LL) * (14112000 / rate);
+    return true;
+}
+bool scanMp3(AVFormatContext *format, const AVStream *stream, const Input &input, double &seconds) {
+    if (input.size > 512LL * 1024 * 1024)
+        return false;
+    auto *packet = av_packet_alloc();
+    if (!packet)
+        return false;
+    struct Owner {
+        AVPacket *&packet;
+        ~Owner() { av_packet_free(&packet); }
+    } owner{packet};
+    int64_t total = 0, end = -1;
+    int status = 0;
+    // find_stream_info buffers the initial packets: read_frame starts at the
+    // logical beginning without seeking away encoder-delay or cover-art state.
+    while ((status = av_read_frame(format, packet)) >= 0) {
+        if (packet->stream_index == stream->index) {
+            int64_t ticks = 0;
+            if (!mp3FrameTicks(*packet, ticks) || packet->pos < 0 ||
+                packet->pos > input.size - packet->size || (end >= 0 && packet->pos != end) ||
+                total > std::numeric_limits<int64_t>::max() - ticks)
+                return false;
+            total += ticks;
+            end = packet->pos + packet->size;
+        }
+        av_packet_unref(packet);
+    }
+    if (status != AVERROR_EOF || input.exhausted || Clock::now() >= input.deadline ||
+        std::ferror(stdin) || !total || end < 0)
+        return false;
+    if (end != input.size) {
+        // Accept the well-defined ID3v1 footer. Unknown trailing bytes, damaged
+        // frames and unsupported footer layouts must not become counted duration.
+        unsigned char footer[128];
+        if (input.size - end != 128 || avio_seek(format->pb, end, SEEK_SET) != end ||
+            avio_read(format->pb, footer, sizeof(footer)) != sizeof(footer) ||
+            std::memcmp(footer, "TAG", 3) != 0)
+            return false;
+    }
+    if (input.exhausted || Clock::now() >= input.deadline)
+        return false;
+    seconds = double(total) / 14112000;
+    return true;
+}
 int64_t position() {
 #ifdef _WIN32
     return _ftelli64(stdin);
@@ -206,6 +277,19 @@ int probe(Input &input, Result &result) {
             result.album = tag(selected->metadata, "album");
         if (result.title.empty())
             result.title = tag(selected->metadata, "title");
+    }
+    if (selected && selected->codecpar->codec_id == AV_CODEC_ID_MP3 &&
+        std::strcmp(format->iformat->name, "mp3") == 0 &&
+        format->duration_estimation_method == AVFMT_DURATION_FROM_BITRATE) {
+        // A sampled bitrate cannot establish VBR duration without Xing/VBRI.
+        // Keep other fields if the optional bounded scan cannot establish a total.
+        result.length = 0;
+        result.bitrate = 0;
+        double seconds = 0;
+        if (scanMp3(format, selected, input, seconds)) {
+            result.length = bounded(seconds, true);
+            result.bitrate = bounded(double(input.size) * 8 / seconds / 1000, false);
+        }
     }
     return result.length || !result.codec.empty() ? 0 : 10;
 }

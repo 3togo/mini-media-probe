@@ -1,0 +1,74 @@
+{
+  "vfr-timed.mkv": {
+    "sha256": "47ff7334359f3cefb1b4b42eccdce05c84c464ad961bf7b8034be68a447d4f01",
+    "packets": 43,
+    "container_duration": "9.833000",
+    "nominal_packet_seconds": 1.419,
+    "first_packet": {
+      "codec_type": "video",
+      "stream_index": 0,
+      "pts": 0,
+      "pts_time": "0.000000",
+      "duration": 33,
+      "duration_time": "0.033000",
+      "size": "2229",
+      "pos": "605",
+      "flags": "K__"
+    },
+    "last_packet": {
+      "codec_type": "video",
+      "stream_index": 0,
+      "pts": 9800,
+      "pts_time": "9.800000",
+      "dts": 9567,
+      "dts_time": "9.567000",
+      "duration": 33,
+      "duration_time": "0.033000",
+      "size": "558",
+      "pos": "28845",
+      "flags": "___"
+    },
+    "helper": {
+      "backend": "libav",
+      "length_seconds": 10,
+      "bitrate_kbps": 23,
+      "codec": "h264",
+      "artist": "",
+      "album": "",
+      "title": ""
+    }
+  },
+  "vfr-timed.h264": {
+    "sha256": "5c36443b8c05070c6871e16ee943c3f1146fdfdb7ea4e4a93ef58e081626d865",
+    "packets": 43,
+    "container_duration": null,
+    "nominal_packet_seconds": 1.4333333333333333,
+    "first_packet": {
+      "codec_type": "video",
+      "stream_index": 0,
+      "duration": 40000,
+      "duration_time": "0.033333",
+      "size": "2266",
+      "pos": "0",
+      "flags": "K__"
+    },
+    "last_packet": {
+      "codec_type": "video",
+      "stream_index": 0,
+      "duration": 40000,
+      "duration_time": "0.033333",
+      "size": "558",
+      "pos": "27967",
+      "flags": "___"
+    },
+    "helper": {
+      "backend": "libav",
+      "length_seconds": 0,
+      "bitrate_kbps": 0,
+      "codec": "h264",
+      "artist": "",
+      "album": "",
+      "title": ""
+    }
+  }
+}
