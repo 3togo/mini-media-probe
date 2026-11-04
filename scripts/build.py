@@ -61,6 +61,8 @@ def main():
     parser.add_argument('--baseline', action='store_true', help='Also build static MediaInfo reference')
     parser.add_argument('--with-ffprobe', action='store_true',
                         help='Build ffprobe and helper against identical fd-enabled static libraries')
+    parser.add_argument('--require-duration-fixtures', action='store_true',
+                        help='Fail tests instead of skipping when ffmpeg/LAME/x264 are unavailable')
     args = parser.parse_args()
     env = direct_environment()
     suffix = args.target + '-' + args.profile
@@ -103,7 +105,9 @@ def main():
     env['PKG_CONFIG_PATH'] = str(prefix / 'lib/pkgconfig')
     build = ROOT / ('build-' + suffix)
     run(['cmake', '-S', ROOT, '-B', build, '-G', 'Ninja', '-DCMAKE_BUILD_TYPE=MinSizeRel',
-         '-DPROBE_STATIC_FFMPEG=ON', *toolchain], env=env)
+         '-DPROBE_STATIC_FFMPEG=ON',
+         '-DPROBE_REQUIRE_DURATION_FIXTURES=' + ('ON' if args.require_duration_fixtures else 'OFF'),
+         *toolchain], env=env)
     run(['cmake', '--build', build, '-j', args.jobs], env=env)
     if args.with_ffprobe:
         executable_suffix = '.exe' if args.target == 'windows' or os.name == 'nt' else ''

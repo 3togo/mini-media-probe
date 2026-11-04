@@ -9,7 +9,12 @@ import tempfile
 import unittest
 
 HELPER = str(Path(sys.argv.pop(1)).resolve())
+REQUIRE_FIXTURES = '--require-fixtures' in sys.argv
+if REQUIRE_FIXTURES:
+    sys.argv.remove('--require-fixtures')
 FFMPEG = shutil.which('ffmpeg')
+if REQUIRE_FIXTURES and not FFMPEG:
+    raise RuntimeError('Required duration fixture generator ffmpeg was not found')
 
 
 @unittest.skipUnless(FFMPEG, 'optional duration fixture generator requires ffmpeg')
@@ -22,6 +27,9 @@ class DurationTests(unittest.TestCase):
         cls.xing = cls.directory / 'xing.mp3'
         encoders = subprocess.check_output([FFMPEG, '-v', 'error', '-encoders'], text=True)
         cls.has_x264 = 'libx264' in encoders
+        if REQUIRE_FIXTURES and ('libmp3lame' not in encoders or not cls.has_x264):
+            cls.temp.cleanup()
+            raise RuntimeError('Required duration fixture encoders libmp3lame and libx264 are missing')
         if 'libmp3lame' not in encoders:
             cls.temp.cleanup()
             raise unittest.SkipTest('optional duration fixtures require libmp3lame')

@@ -21,11 +21,11 @@ jobs:
           python-version: '3.12'
       - name: Linux build tools
         if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y ninja-build pkg-config zlib1g-dev
+        run: sudo apt-get update && sudo apt-get install -y ninja-build pkg-config zlib1g-dev ffmpeg
       - name: macOS build tools
         if: runner.os == 'macOS'
-        run: brew install ninja pkg-config
-      - run: python scripts/build.py --jobs 3
+        run: brew install ninja pkg-config ffmpeg
+      - run: python scripts/build.py --jobs 3 --require-duration-fixtures
       - run: ctest --test-dir build-native-broad --output-on-failure
       - uses: actions/upload-artifact@v4
         with:
@@ -58,7 +58,8 @@ jobs:
             mingw-w64-x86_64-pkgconf
             mingw-w64-x86_64-python
             mingw-w64-x86_64-zlib
-      - run: python scripts/build.py --jobs 3
+            mingw-w64-x86_64-ffmpeg
+      - run: python scripts/build.py --jobs 3 --require-duration-fixtures
       - run: ctest --test-dir build-native-broad --output-on-failure
       - uses: actions/upload-artifact@v4
         with:

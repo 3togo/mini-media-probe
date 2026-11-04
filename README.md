@@ -163,8 +163,10 @@ pass in [GitHub Actions](https://github.com/3togo/mini-media-probe/actions/runs/
 The workflow uploads each platform's executable, build configuration and license
 notices. Linux-to-Windows cross-compilation has also been exercised locally.
 GitHub artifact downloads do not preserve executable permissions; restore them
-with `chmod +x` on Linux/macOS. Native CI validates the helper tests, while the
-30-file metadata comparison above was run locally on Linux and under Wine.
+with `chmod +x` on Linux/macOS. Native CI requires the generated-media MP3 duration
+regressions, in addition to the helper and normalization tests; fixture generators
+are test-only dependencies. The 30-file metadata comparison above was run locally
+on Linux and under Wine.
 
 For an existing FFmpeg installation, use CMake directly with its pkg-config path.
 The `PROBE_STATIC_FFMPEG` option controls private dependency resolution; the build
