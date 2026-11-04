@@ -1,12 +1,14 @@
 # mini-media-probe
 
+[![Build and test](https://github.com/3togo/mini-media-probe/actions/workflows/build.yml/badge.svg)](https://github.com/3togo/mini-media-probe/actions/workflows/build.yml)
+
 A standalone C++17 subprocess for extracting duration, overall bitrate, codec,
 artist, album and title from an inherited, seekable regular file. It links a
 metadata-only FFmpeg build; it does not invoke `ffprobe`, link MediaInfo, or depend
 on aMule or wxWidgets.
 
-This is a prototype for an independent project. It has not been integrated into
-aMule. The default output preserves aMule's `AMMP 1` helper protocol; `--json`
+This independent project is a prototype. It has not been integrated into aMule.
+The default output preserves aMule's `AMMP 1` helper protocol; `--json`
 provides a general-purpose interface.
 
 ## Measured result
@@ -90,8 +92,13 @@ python3 scripts/build.py --target windows --profile broad
 ```
 
 `--cxx /absolute/path/to/compiler` can override the helper's C++ compiler.
-Native Linux and Windows cross-compilation have been exercised. The supplied
-native Linux/macOS/Windows CI workflow has not been run on a hosted repository.
+Native Linux x86-64, Windows x86-64 and macOS ARM64 builds and all nine helper tests
+pass in [GitHub Actions](https://github.com/3togo/mini-media-probe/actions/runs/41808794874).
+The workflow uploads each platform's executable, build configuration and license
+notices. Linux-to-Windows cross-compilation has also been exercised locally.
+GitHub artifact downloads do not preserve executable permissions; restore them
+with `chmod +x` on Linux/macOS. Native CI validates the helper tests, while the
+30-file metadata comparison above was run locally on Linux and under Wine.
 
 For an existing FFmpeg installation, use CMake directly with its pkg-config path.
 The `PROBE_STATIC_FFMPEG` option controls private dependency resolution; the build
